@@ -1,0 +1,58 @@
+<?php echo $this->doctype() ?>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <title>Stereooboi</title>
+        <?php echo $this->headLink()->appendStylesheet('/css/global.css') ?>
+    </head>
+    <body>
+        <div class="container">
+            <div class="header">
+                <h2>Это Header</h2>
+                <a href="
+                    <?php echo $this->url(array(
+                        "controller" => "index",
+                        "action" => "index"
+                    ))?>">
+                    Экообои
+                </a>
+                <a href="
+                    <?php echo $this->url(array(
+                        "controller" => "how-to-buy",
+                        "action" => "index"
+                    )) ?>">
+                    Как купить
+                </a>
+                <a href="
+                    <?php echo $this->url(array(
+                        "controller" => "gallery",
+                        "action" => "index"
+                    )) ?>">
+                    Галерея
+                </a>
+                <a href="
+                    <?php echo $this->url(array(
+                        "controller" => "contacts",
+                        "action" => "index"
+                    )) ?>">
+                    Контакты
+                </a>
+                <a href="
+                    <?php echo $this->url(array(
+                        "controller" => "patternmaker",
+                        "action" => "index"
+                    )) ?>">
+                    Patternmaker
+                </a>
+            </div>
+            <div class="content">
+                <?php echo $this->layout()->content ?>
+            </div>
+
+            
+        </div>
+
+
+
+    </body>
+</html>
