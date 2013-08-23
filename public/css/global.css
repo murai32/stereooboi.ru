@@ -31,3 +31,10 @@ a
     margin-right: 10px;
     margin-left: 10px;
 }
+
+.product
+{
+    background-color: dimgray;
+    padding: 10px;
+    margin: 10px;
+}

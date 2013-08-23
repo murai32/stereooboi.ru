@@ -1,0 +1,18 @@
+<h1>Здесь каталог</h1>
+<?php
+foreach ($this->products as $product)
+{
+?>
+ 
+<div class="product">
+    <p> 
+        ID: <?php echo $this->escape($product->getId()) ?><br>
+        Наименование: <?php echo $this->escape($product->getName()) ?><br>
+        Количество на складе: <?php echo $this->escape($product->getAmount()) ?><br>
+        Описание: <?php echo $this->escape($product->getDescription()) ?>
+    </p>
+</div>
+
+<?php  
+}
+?>

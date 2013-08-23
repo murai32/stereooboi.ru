@@ -10,7 +10,10 @@ class GalleryController extends Zend_Controller_Action
 
     public function indexAction()
     {
-        // action body
+        $mapper = new Application_Model_FilesMapper();
+        $mapper->fetchAll();
+        
+        $this->view->entries = $mapper->fetchAll();
     }
 
 

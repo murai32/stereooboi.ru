@@ -1,0 +1,28 @@
+<h1>
+    Администрация
+</h1>
+<div>
+    <a href="<?php echo $this->url(array( "action" => "add-new-entry")) ?>">Добавить новый продукт</a>
+</div>
+<?php
+foreach ($this->products as $product)
+{
+?>
+ 
+<div class="product">
+    <p> 
+        ID: <?php echo $this->escape($product->getId()) ?><br>
+        Наименование: <?php echo $this->escape($product->getName()) ?><br>
+        Количество на складе: <?php echo $this->escape($product->getAmount()) ?><br>
+        Описание: <?php echo $this->escape($product->getDescription()) ?>
+    </p>
+    <a href="<?php echo $this->url(array(
+            "action" => "change-product",
+            "id"     => $product->getId()))
+    
+    ?>">Изменить запись</a>
+</div>
+
+<?php  
+}
+?>
