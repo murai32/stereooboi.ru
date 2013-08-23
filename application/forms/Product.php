@@ -2,15 +2,14 @@
 
 class Application_Form_Product extends Zend_Form {
 
+    
+    
     public function init()
     {
-        $this->setAction('controller/add-new-entry')->setMethod('post');
-
+        $this->setMethod('post');
         
-
         $this->addElement('text', 'type', array(
-            'label' => 'Тип продукта:',
-            'value' => $this->id ? $this->id : NULL
+            'label' => 'Тип продукта:'
         ));
 
         $this->addElement('text', 'name', array(
@@ -43,6 +42,39 @@ class Application_Form_Product extends Zend_Form {
             'label' => 'Сохранить'
         ));
     }
+    
+//    public function setType($type)
+//    {
+//        $this->id = $id;
+//        $this->getElement('type')->setOptions(array(
+//            'value' => 'id value: ' . $id
+//        ));
+//    }
+    
+    public function setValue(Application_Model_Products $product)
+    {
+//        $this->getElement('type')->setOptions(array(
+//            'value' => $product->getType()
+//        ));
+        
+        $allElements = $this->getElements();
+        $allElements = array_keys($allElements);
+//        $a = get_class_vars('Application_Model_Products');
+        $allVariables = $product->getVars();
+        $allVariables = array_keys($allVariables);
+        
+        foreach ($allElements as $element)
+        {
+            if(in_array($element, $allVariables))
+            {
+                $getterName = 'get' . ucfirst($element);
+                $this->getElement($element)->setOptions(array(
+                    'value' => $product->$getterName()
+                ));
+            }
+        }
+    }
+          
 
 }
 

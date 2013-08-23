@@ -75,6 +75,33 @@ class Application_Model_ProductsMapper
             $this->getDbTable()->update($data,array('id = ?' => $id));
         }
     }
+    
+    
+    public function find ($id, Application_Model_Products $product)
+    {
+        $result = $this->getDbTable()->find($id);
+        if (0 == count($result))
+        {
+            return;
+        }
+        
+        $row = $result->current();
+        $product->setId($row->id)
+                ->setType($row->type)
+                ->setName($row->name)
+                ->setAmount($row->amount)
+                ->setDescription($row->description)
+                ->setPrice($row->price)
+                ->setFoto($row->foto)
+                ->setRecommended_products($row->recommended_products);
+        
+//       return $product;
+    }
+    
+    public function delete($id)
+    {
+        $this->getDbTable()->delete(array('id = ?' => $id));
+    }
 
 }
 

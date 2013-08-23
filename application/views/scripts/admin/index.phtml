@@ -21,6 +21,11 @@ foreach ($this->products as $product)
             "id"     => $product->getId()))
     
     ?>">Изменить запись</a>
+    <a href="<?php echo $this->url(array(
+            "action" => "del-product",
+            "id" => $product->getId()
+        ));
+        ?>" style="padding-left: 350px">Удалить запись</a>
 </div>
 
 <?php  

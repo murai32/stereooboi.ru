@@ -44,6 +44,7 @@ class Application_Model_Products
         {
             $this->setOptions($options);
         }
+        
     }
     
     public function setOptions(array $options)
@@ -58,6 +59,11 @@ class Application_Model_Products
 //            }
         }
         return $this;
+    }
+    
+    public function getVars()
+    {
+        return get_class_vars(__CLASS__);
     }
 
 }
