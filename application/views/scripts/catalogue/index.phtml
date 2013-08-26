@@ -1,18 +1,68 @@
 <h1>Здесь каталог</h1>
+<a>
+    Штампы
+</a>
+<a>
+    Обои
+</a>
+<a>
+    Ролики
+</a>
+<img src="imgs/1.jpg">
+
+<h2>Штампы:</h2>
 <?php
-foreach ($this->products as $product)
+foreach ($this->stamps as $product)
 {
 ?>
- 
 <div class="product">
     <p> 
-        ID: <?php echo $this->escape($product->getId()) ?><br>
+        Тип: <?php echo $this->escape($product->getType()) ?><br>
+        Альбом: <?php echo $this->escape($product->getAlbum())?></br>
         Наименование: <?php echo $this->escape($product->getName()) ?><br>
         Количество на складе: <?php echo $this->escape($product->getAmount()) ?><br>
-        Описание: <?php echo $this->escape($product->getDescription()) ?>
+        Описание: <?php echo $this->escape($product->getDescription()) ?></br>
+        Фото: <img src="<?php echo $this->escape($product->getFoto()) ?>">
     </p>
 </div>
+<?php  
+}
+?>
 
+<h2>Обои:</h2>
+<?php
+foreach ($this->wallpapers as $product)
+{
+?>
+<div class="product">
+    <p> 
+        Тип: <?php echo $this->escape($product->getType()) ?><br>
+        Альбом: <?php echo $this->escape($product->getAlbum())?></br>
+        Наименование: <?php echo $this->escape($product->getName()) ?><br>
+        Количество на складе: <?php echo $this->escape($product->getAmount()) ?><br>
+        Описание: <?php echo $this->escape($product->getDescription()) ?></br>
+        Фото: <img src="<?php echo $this->escape($product->getFoto()) ?>">
+    </p>
+</div>
+<?php  
+}
+?>
+
+<h2>Ролики:</h2>
+<?php
+foreach ($this->rollers as $product)
+{
+?>
+<div class="product">
+    <p> 
+        Тип: <?php echo $this->escape($product->getType()) ?><br>
+        Альбом: <?php echo $this->escape($product->getAlbum())?></br>
+        Наименование: <?php echo $this->escape($product->getName()) ?><br>
+        Количество на складе: <?php echo $this->escape($product->getAmount()) ?><br>
+        Описание: <?php echo $this->escape($product->getDescription()) ?></br>
+        Фото: <img src="<?php echo $this->escape($product->getFoto()) ?>">
+    </p>
+</div>
 <?php  
 }
 ?>

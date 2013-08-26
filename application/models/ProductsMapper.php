@@ -38,6 +38,7 @@ class Application_Model_ProductsMapper
             $entry = new Application_Model_Products();
             $entry->setId($row->id)
                     ->setType($row->type)
+                    ->setAlbum($row->album)
                     ->setName($row->name)
                     ->setAmount($row->amount)
                     ->setDescription($row->description)
@@ -93,6 +94,7 @@ class Application_Model_ProductsMapper
         $row = $result->current();
         $product->setId($row->id)
                 ->setType($row->type)
+                ->setAlbum($row->album)
                 ->setName($row->name)
                 ->setAmount($row->amount)
                 ->setDescription($row->description)
@@ -107,6 +109,37 @@ class Application_Model_ProductsMapper
     {
         $this->getDbTable()->delete(array('id = ?' => $id));
     }
+    
+    public function fetchTypeWhere($where)
+    {
+        $dbTable = $this->getDbTable();
+        $query = $dbTable->select()->where('type = ?', (string)$where);
+        $resultRaws = $dbTable->fetchAll($query);
+        $entries = array();
+        
+        foreach ($resultRaws as $row)
+        {
+            $entry = new Application_Model_Products();
+            $entry->setId($row->id)
+                    ->setType($row->type)
+                    ->setAlbum($row->album)
+                    ->setName($row->name)
+                    ->setAmount($row->amount)
+                    ->setDescription($row->description)
+                    ->setPrice($row->price)
+                    ->setFoto($row->foto)
+                    ->setRecommended_products($row->recommended_products);
+            
+            $entries[] = $entry;
+        }
+        
+        
+        return $entries;
+        
+        
+    }
+    
+    
 
 }
 

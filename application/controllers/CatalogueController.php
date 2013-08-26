@@ -12,8 +12,10 @@ class CatalogueController extends Zend_Controller_Action
     {
         $mapper = new Application_Model_ProductsMapper();
         $this->view->products = $mapper->fetchAll();
+        $this->view->stamps = $mapper->fetchTypeWhere('штамп');
+        $this->view->wallpapers = $mapper->fetchTypeWhere('обои');
+        $this->view->rollers = $mapper->fetchTypeWhere('ролик');
     }
-
 
 }
 

@@ -11,10 +11,10 @@ class Application_Form_ChangeProduct extends Application_Form_ProductAbstract
             'order' => 4
         ));
         
-        $this->addElement('hidden', 'id', array(
-            'label' => 'ID товара',
-            'order' => 0
-        ));
+//        $this->addElement('hidden', 'id', array(
+//            'label' => 'ID товара',
+//            'order' => 0
+//        ));
     }
 }
 ?>

@@ -5,6 +5,7 @@ class Application_Model_Products
 {
     protected $id;
     protected $type;
+    protected $album;
     protected $name;
     protected $amount;
     protected $description;

@@ -12,6 +12,10 @@ class Application_Form_ProductAbstract extends Zend_Form {
         $this->addElement('text', 'type', array(
             'label' => 'Тип продукта:'
         ));
+        
+        $this->addElement('text', 'album', array(
+            'label' => 'Альбом продукта:'
+        ));
 
         $this->addElement('text', 'name', array(
             'label' => 'Название:'
