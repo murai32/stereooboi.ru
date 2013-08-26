@@ -1,8 +1,9 @@
+<h2>Изменение продукта</h2>
 <?php
 //$this->form->setAction($this->url());
 $this->form->setAction($this->url(array(
     "controller" => "admin",
-    "action" => "add-new-entry",
+    "action" => "change-product",
     "id" => $this->id
 )));
 echo '<p>ID продукта: ' . $this->id . '</p>';

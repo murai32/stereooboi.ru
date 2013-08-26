@@ -2,6 +2,17 @@
 
 class AdminController extends Zend_Controller_Action
 {
+    //TODO Нельзя сохранить два фаила с одинаковым название
+    //если изображения нет, надо об этом как то сообщить в model_product->checkImg() 
+    //проверяет есть ли изображение и выдает тэг img или сообщение о том что нет 
+    //Расставить валидаторы на все элементы формы
+    //ошибка при загрузке фаила с человеком на фоне скалы, в шляпе
+    //coockie должны быть включены для работы сайта
+    
+
+
+    //в эту папку сохраняются фотографии 
+    protected $imgFolder = '/imgs/';
 
     public function init()
     {
@@ -11,12 +22,14 @@ class AdminController extends Zend_Controller_Action
     public function indexAction()
     {
         $productsMapper = new Application_Model_ProductsMapper();
+        
         $this->view->products = $productsMapper->fetchAll();
+        
     }
 
     public function addNewEntryAction()
     {
-        $form = new Application_Form_Product();
+        $form = new Application_Form_AddNewProduct();
         
         $request = $this->getRequest();
         
@@ -26,7 +39,9 @@ class AdminController extends Zend_Controller_Action
             if($form->isValid($request->getPost()))
             {
                 $products = new Application_Model_Products($form->getValues());
-                $request->getParam('id') ? $products->setId($request->getParam('id')) : null;
+//                $request->getParam('id') ? $products->setId($request->getParam('id')) : null;
+                $imgName = $this->imgFolder . $form->getValue('foto');
+                $products->setFoto($imgName);
                 $productsMapper = new Application_Model_ProductsMapper();
                 
                 $productsMapper->save($products);
@@ -40,21 +55,48 @@ class AdminController extends Zend_Controller_Action
 
     public function changeProductAction()
     {
+        $form = new Application_Form_ChangeProduct();
         $request = $this->getRequest();
-        $id = $request->getParam('id');
-        $this->view->id = $id;
         
-        $productsMapper = new Application_Model_ProductsMapper();
-        $product = new Application_Model_Products();
-        $productsMapper->find($id, $product);
+        if (!$this->getRequest()->isPost())
+        {
+            $id = $request->getParam('id');
+            $this->view->id = $id;
+
+            $productsMapper = new Application_Model_ProductsMapper();
+            $product = new Application_Model_Products();
+            $productsMapper->find($id, $product);
+
+            
+            $form->setValue($product);
+
+            
+        }
+        else if($this->getRequest()->isPost())
+        {
+            if($form->isValid($request->getPost()))
+            {
+                $products = new Application_Model_Products($form->getValues());
+//                $products->setId($request->getParam('id'));
+                
+                if($form->getValue('foto'))
+                {
+                    $imgName = $this->imgFolder . $form->getValue('foto');
+                    $products->setFoto($imgName);
+                }
+                else
+                {
+                    $products->unsetFoto();
+                }
+                
+                $productsMapper = new Application_Model_ProductsMapper();
+                
+                $productsMapper->save($products);
+                return $this->_helper->redirector('index');      
+            }
+        }
         
-        $form = new Application_Form_Product();
-        $form->setValue($product);
-        
-        
-        //todo: метод который показывает все перменые свои в Фзздшсфешщт
         $this->view->form = $form;
-        
     }
     
     public function delProductAction()

@@ -14,9 +14,12 @@ foreach ($this->products as $product)
         ID: <?php echo $this->escape($product->getId()) ?><br>
         Наименование: <?php echo $this->escape($product->getName()) ?><br>
         Количество на складе: <?php echo $this->escape($product->getAmount()) ?><br>
-        Описание: <?php echo $this->escape($product->getDescription()) ?>
+        Описание: <?php echo $this->escape($product->getDescription()) ?></br>
+        Расположение фотографии: <?php echo $this->escape($product->getFoto())?></br>
+        Фото: <img src="..<?php echo $this->escape($product->getFoto())?>" alt="Фото продукта">
     </p>
     <a href="<?php echo $this->url(array(
+            "controller" => "admin",
             "action" => "change-product",
             "id"     => $product->getId()))
     
@@ -30,4 +33,3 @@ foreach ($this->products as $product)
 
 <?php  
 }
-?>

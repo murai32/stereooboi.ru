@@ -65,6 +65,12 @@ class Application_Model_Products
     {
         return get_class_vars(__CLASS__);
     }
+    
+    public function unsetFoto()
+    {
+        unset($this->foto);
+    }
+    
 
 }
 

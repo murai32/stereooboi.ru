@@ -68,10 +68,15 @@ class Application_Model_ProductsMapper
         if (null === ($id = $products->getId()))
         {
             unset($data[$id]);
+//            unset($data['type']);
             $this->getDbTable()->insert($data);
         }
         else 
         {
+            if($data['foto'] === null)
+            {
+                unset($data['foto']);
+            }
             $this->getDbTable()->update($data,array('id = ?' => $id));
         }
     }
